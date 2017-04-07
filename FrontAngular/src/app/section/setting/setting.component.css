@@ -1,6 +1,10 @@
 
 
-.row{
-    transform: translate3d(0,8vh,0);
-    
+:host{
+    position: fixed;
+    width: 100%;
+    height: 92vh;
+    z-index: 9999;
+    transform: translate3d(0,8.4vh,0);
+    background: white;
 }

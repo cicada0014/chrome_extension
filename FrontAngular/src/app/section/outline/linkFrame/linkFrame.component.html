@@ -1,5 +1,5 @@
 <div>
-  <div style="margin-top: 50;">
+  <div *ngIf="navService.isInput" style="margin-top: 50;">
     
     <input #inputUrl class="col s9" type="url" placeholder="http://" (keyup.enter)="onEnter(inputUrl.value)" style="margin-bottom: 0; margin-top: 10; height: 5vh "
     />

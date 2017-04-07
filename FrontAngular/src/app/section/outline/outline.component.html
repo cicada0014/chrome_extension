@@ -1,7 +1,7 @@
 <!--아웃라인 컴포넌트의 전반적인 컨테이너를 담당한다.-->
 <div class="outline row" [@navbarAction]="navbarAction">
 
-    <linkFrame *ngIf="isActiveCrtLinkFrameBtn"  (urlInfomation)="pageGet($event)" [@navbarAction]="navbarAction" class="z-depth-3" [ngStyle]="{'width': linkFrameWidth, 'transform': linkFrameTransform,'z-index': linkFrameZIndex }"
+    <linkFrame   (urlInfomation)="pageGet($event)" [@navbarAction]="navbarAction" class="z-depth-3" [ngStyle]="{'width': linkFrameWidth, 'transform': linkFrameTransform,'z-index': linkFrameZIndex }"
         [iframeOpacity]="iframeOpacity" [iframeHeight]="applyFrameHeight()" [iframeWidth]="applyFrameWidth()" [iframeScale]="applyFrameScale()"></linkFrame>
 
     <devider id="devider" [@navbarAction]="navbarAction" draggable="true"  [ngStyle]="{ 'z-index': dividerZIndex ,'width': dividerWidth, 'transform': dividerTransform}"

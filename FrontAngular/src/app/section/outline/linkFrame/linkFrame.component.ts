@@ -1,22 +1,23 @@
+import { NavBarService } from '../../../shared/nav-bar.service';
 import { LinkSenderService } from '../../../shared/link-sender.service';
 import { Observable } from 'rxjs/Observable';
 
 import { LinkFrameService } from './linkFrame.service.promise';
 import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
 import {
-    animate,
-    Component,
-    ElementRef,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-    Renderer,
-    state,
-    style,
-    transition,
-    trigger,
-    ViewChild
+  animate,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  Renderer,
+  state,
+  style,
+  transition,
+  trigger,
+  ViewChild
 } from '@angular/core';
 
 import { DragulaService, dragula } from 'ng2-dragula/ng2-dragula';
@@ -50,10 +51,11 @@ export class linkFrameComponent implements OnInit {
   @Input() iframeOpacity: number;
   result: Observable<string[]>;
 
+
   // private iframeRatio = '300%';
   private state: string = 'close';
 
-  @Output() urlInfomation  = new EventEmitter<string>();
+  @Output() urlInfomation = new EventEmitter<string>();
 
   //  sanitization 을 통과한 url을 만들기 위한 변수
   trustResourceURL: SafeResourceUrl;
@@ -64,12 +66,12 @@ export class linkFrameComponent implements OnInit {
 
 
   constructor(private _sanitizer: DomSanitizer, private connectService: LinkFrameService, private rd: Renderer,
-    private dragulaService: DragulaService, private linkSendService: LinkSenderService) {
+    private dragulaService: DragulaService, private linkSendService: LinkSenderService, public navService: NavBarService) {
 
     // 맨 처음 띄워줄 화면
     this.linkUrl = "http://www.tistory.com/";
     this.urlChecker = this.linkUrl;
-    
+
     // sanitization 을 통과해야 angular app 에서 쓸 수 있다.
     this.trustResourceURL = this._sanitizer.bypassSecurityTrustResourceUrl(this.linkUrl);
 
@@ -79,7 +81,7 @@ export class linkFrameComponent implements OnInit {
 
   pageGet() {
 
-    
+
     this.urlInfomation.emit(this.linkUrl);
 
 
@@ -139,6 +141,8 @@ export class linkFrameComponent implements OnInit {
   }
 
   ngAfterContentChecked() {
+    
+
     // console.log(this.linkSendService.sendURL);
     if (this.urlChecker !== this.linkSendService.sendURL) {
       this.linkUrl = this.linkSendService.sendURL;

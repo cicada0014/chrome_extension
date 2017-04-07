@@ -38,7 +38,7 @@ export class KeySetting {
     constructor() {
 
     }
-    ngAfterViewInit() {
+    ngAfterContentInit() {
         this.keyName = this.shortkey.getKeyName();
         this.keyCode = this.shortkey.getKeyCode();
         this.keyAlias = this.shortkey.getKeyAlias();

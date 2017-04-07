@@ -133,8 +133,7 @@ export class HeaderComponent implements OnInit {
         this.isLinkFrameActivated = this.isLinkFrameActivated ? false : true;
     }
     goSetting() {
-        this.settingUrl = this.router.createUrlTree(['3ndEditor', 'setting']);
-        this.router.navigateByUrl(this.settingUrl);
+        
     }
     enlargeFrame() {
         this.navService.enlargeFrame();

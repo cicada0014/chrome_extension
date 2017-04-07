@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
     selector: 'section',
     template: `
+    <setting *ngIf=""></setting>
     <router-outlet></router-outlet>
     `
 })
@@ -18,7 +19,7 @@ export class SectionComponent implements OnInit {
 
     constructor() { }
 
-    ngOnInit() { 
+    ngOnInit() {
 
     }
 
