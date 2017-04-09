@@ -21,29 +21,28 @@ const routes: Routes = [
   },
   {
     path: '3ndEditor',
-    canActivate: [AuthGuard], // 로그인 검사를 하는 가드. 토큰을 얻을 수 없는 상황이라면 
+    // canActivate: [AuthGuard], // 로그인 검사를 하는 가드. 토큰을 얻을 수 없는 상황이라면 
     children: [
       {
         path: '',
         redirectTo: 'index',
         pathMatch: 'full'
       },
-
-      {
-        path: 'setting',
-        component: SettingComponent,
-        children: [
-          {
-            path: '',
-            redirectTo: 'keymap',
-            pathMatch: 'full'
-          },
-          {
-            path: 'keymap',
-            component: SettingKeymapComponent
-          }
-        ]
-      },
+      // {
+      //   path: 'setting',
+      //   component: SettingComponent,
+      //   children: [
+      //     {
+      //       path: '',
+      //       redirectTo: 'keymap',
+      //       pathMatch: 'full'
+      //     },
+      //     {
+      //       path: 'keymap',
+      //       component: SettingKeymapComponent
+      //     }
+      //   ]
+      // },
       {
         path: ':loginUserName',
         component: OutlineComponent,
