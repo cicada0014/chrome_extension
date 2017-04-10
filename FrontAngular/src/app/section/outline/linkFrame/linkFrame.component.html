@@ -1,23 +1,26 @@
 <div>
   <div *ngIf="navService.isInput" style="margin-top: 50;">
-    
+
     <input #inputUrl class="col s9" type="url" placeholder="http://" (keyup.enter)="onEnter(inputUrl.value)" style="margin-bottom: 0; margin-top: 10; height: 5vh "
     />
-    <button  style="height:5vh" class="col s3" id="gg" (click)="pageGet()">페이지 내용보내기 =></button>
-    
+    <a style="height:4.8vh" class="grey-text grey lighten-4  waves-effect waves btn col s2" (click)="pageGet()">
+      <i class="fa fa-clone fa-4" aria-hidden="true"></i>
+      <!--<i class="fa fa-angle-double-right fa-4" aria-hidden="true"></i>-->
+    </a>
+    <a draggable="true" (drag)="dragStart($event)" style="height:4.8vh" class="grey-text grey lighten-4 waves-effect waves btn col s1">
+      <i class="fa fa-arrows-h fa-4" aria-hidden="true"></i>
+    </a>
+
   </div>
 
   <div id="frame">
-    
-  
-    
-  <iframe id="iframe" #usedFrame [dragula]="'bag-one'" 
-  [ngStyle]="{ 'opacity':iframeOpacity,'height':iframeHeight,'width': iframeWidth,'-ms-transform':iframeScale , '-moz-transform':iframeScale,
+
+
+
+    <iframe id="iframe" #usedFrame [dragula]="'bag-one'" [ngStyle]="{ 'opacity':iframeOpacity,'height':iframeHeight,'width': iframeWidth,'-ms-transform':iframeScale , '-moz-transform':iframeScale,
     '-o-transform': iframeScale,'-webkit-transform':iframeScale,'transform': iframeScale}" sandbox="allow-same-origin allow-forms allow-modals allow-scripts"
-    [src]="trustResourceURL">
-    <!--[src]="trustResourceURL">-->
-  </iframe>
+      [src]="trustResourceURL">
+      <!--[src]="trustResourceURL">-->
+    </iframe>
   </div>
 </div>
-
-

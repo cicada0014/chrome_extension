@@ -1,26 +1,26 @@
 <div id="linkTab-color" *ngIf="usage==='linkTab'" >
     <ul class="center">
-        <li class="top-bar"> URL List</li>
+        <li class="top-bar"> BookMark</li>
         <li>
             <linkPack></linkPack>
         </li>
-        <li>
+        <!--<li>
             <trash-can class="tab-btn waves-effect"></trash-can>
-        </li>
+        </li>-->
     </ul>
 </div>
 
-<div id="editorTab-color" *ngIf="usage==='editorTab'">
+<div  id="editorTab-color" *ngIf="usage==='editorTab'">
     <ul class="center">
         <li class="top-bar">Editor Tab</li>
         <li (click)="openGWindow()">
             <save  id="google_drive"  class="tab-btn waves-effect"></save>
         </li>
-        <li>
+        <!--<li>
             <share class="tab-btn waves-effect"></share>
         </li>
         <li>
             <export class="tab-btn waves-effect"></export>
-        </li>
+        </li>-->
     </ul>
 </div>

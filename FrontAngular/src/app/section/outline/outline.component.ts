@@ -55,7 +55,7 @@ var savedDiveiderTransX: number = 0;
         trigger(
             'openLinkTab',
             [
-                state('deActive', style({ transform: 'translate3d(-100px,9%,0)', opacity: 0 })),
+                state('deActive', style({ transform: 'translate3d(-100%,9%,0)', opacity: 0 })),
                 state('active', style({ transform: 'translate3d(0,9%,0)', opacity: 0.8 })),
                 transition('deActive <=> active', animate(200)),
 
@@ -152,11 +152,11 @@ export class OutlineComponent implements OnInit {
         ///////
         let that = this;
         this.lineStream
-            .debounceTime(2000) // 입력후 5 초 뒤에 저장할 수 있도록
+            .debounceTime(2000) // 입력후 2 초 뒤에 저장할 수 있도록
             .distinctUntilChanged() // 내용의 변화가 없으면 요청을 보내지 않음 
             .forEach(content => {
-                if (that.chromeService.getCurrentFileId()) {
-                    that.chromeService.saveContent(that.chromeService.getCurrentFileId(), content)
+                if (this.chromeService.getCurrentFileId()) {
+                    this.chromeService.saveContent(this.chromeService.getCurrentFileId(), content)
                 } else {
                     console.log("파일 아이디 없잖아!!");
                 }
@@ -360,11 +360,10 @@ export class OutlineComponent implements OnInit {
     // }
 
     pageGet(linkUrl) {
-
         this.chromeService.getBookMarkList();
-        // this.chromeService.pageGet(linkUrl).then((result) => {
-        //     this.editorElement.el.nativeElement.insertAdjacentHTML('beforeend', result);
-        // });
+        this.chromeService.pageGet(linkUrl).then((result) => {
+            this.editorElement.el.nativeElement.insertAdjacentHTML('beforeend', result);
+        });
     }
 
 
@@ -381,7 +380,6 @@ export class OutlineComponent implements OnInit {
 
     ngAfterContentInit() {
         this.contentOnEditor = this.editorElement.el;
-        console.log(this.contentOnEditor);
 
 
 

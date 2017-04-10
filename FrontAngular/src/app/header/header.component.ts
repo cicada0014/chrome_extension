@@ -28,7 +28,7 @@ import {
                 // 초기에 width 와 height 값을 0으로 지정해서 보이지 않도록 한다.
                 state('deActive', style({ opacity: 0, transform: 'translateX(100%)' })),
                 state('active', style({ opacity: 1 })),
-                transition('deActive <=> active', animate(300)),
+                transition('deActive <=> active', animate(500)),
             ]
         ),
     ]

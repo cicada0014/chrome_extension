@@ -21,11 +21,11 @@
         </div>
     </nav>
     <div class="row" style="margin: 0">
-        <a class="blue-grey lighten-4 black-text text-darken-2 
-        waves-effect waves-light btn col s6" (click)="clickNewTab()">New File</a>
+        <a class=" black-text text-darken-2 
+        waves-effect waves-light btn col s6" [ngClass]="isNewFileSelected" (click)="clickNewTab()">새 파일 저장</a>
 
-        <a class="blue-grey lighten-4 black-text text-darken-2 
-        waves-effect waves-light btn col s6" (click)="clickExistTab()">Existing File</a>
+        <a class=" black-text text-darken-2 
+        waves-effect waves-light btn col s6" [ngClass]=" isExistingFileSelected " (click)="clickExistTab()">불러오기</a>
     </div>
 
 
@@ -40,6 +40,7 @@
                                     <div class="input-field col s12">
                                         <input name="fileNameForm" id="icon_prefix" type="text" class="validate" [(ngModel)]="newFileName">
                                         <label for="icon_prefix">File Name</label>
+                                        <p>현재 작성된 내용을 저장합니다.</p>
                                     </div>
                                 </div>
                             </form>
@@ -55,7 +56,11 @@
                     </div>
                     <div class="card-action">
 
-                        <a class="black-text" (click)="createFile()" style="font-size: 2em">파일 생성 </a>
+                        <a class="black-text waves-effect waves-light btn" [ngClass]="saveProcessState" (click)="createFile()" style="font-size: 1.2em">
+                            <span *ngIf="!(saveProcessState==='disabled')">저장</span>
+                            <i *ngIf="saveProcessState==='disabled'" class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                            <span class="sr-only">Loading...</span>
+                        </a>
 
                     </div>
                 </div>
@@ -66,7 +71,7 @@
     <div id="fileList" class="col s12" *ngIf="isSelectedTab === 2">
         <div id="fileCollection" *ngIf="isCompletedGetList === true">
             <div class="collection">
-                <a class="collection-item" *ngFor="let file of files" (click)="insertFileContent(file)">
+                <a class="collection-item waves-effect waves" *ngFor="let file of files" (click)="insertFileContent(file)">
                     <b style="font-size: 2em">File Name : {{file.title}} </b>
 
 
@@ -78,3 +83,5 @@
 
 
 </div>
+
+<div id="toast-container"></div>

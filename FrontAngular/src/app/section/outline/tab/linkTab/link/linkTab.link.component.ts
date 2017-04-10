@@ -1,3 +1,4 @@
+import { ChromeExtensionService } from '../../../../../shared/chrome-extension.service';
 import { LinkSenderService } from '../../../../../shared/link-sender.service';
 import { Links } from './links';
 import { FormsModule } from '@angular/forms';
@@ -8,10 +9,10 @@ import { DragulaService, dragula } from 'ng2-dragula/ng2-dragula';
 
 
 @Component({
-    selector:"linkPack",
-    templateUrl : 'linkTab.link.component.html', 
-    styleUrls:['linkTab.link.component.css'],
-    providers:[MockService]
+    selector: "linkPack",
+    templateUrl: 'linkTab.link.component.html',
+    styleUrls: ['linkTab.link.component.css'],
+    providers: [MockService]
 })
 export class LinkComponent {
     /**
@@ -23,31 +24,45 @@ export class LinkComponent {
     */
 
     // 서버 Json을 받는 리스트 맴버
-    listLinks : Links[] = [];
+    listLinks: Links[] = [];
 
     // 템플릿에 binding할 리스트 맴버
-    listLinkFixed : Link[];
-    listLinkUnfixed : Link[];
-    title : string;
+    listLinkFixed: Link[];
+    listLinkUnfixed: Object[];
+    title: string;
 
     constructor(
         private linkService: MockService,
-        private linkSendService : LinkSenderService){
-        // 목객체의 정보를 받음.
-        this.listLinks = linkService.getLink();
-        this.listLinkFixed = this.listLinks[0].links;
-        this.listLinkUnfixed = this.listLinks[1].links;
+        private linkSendService: LinkSenderService,
+        private chromeService: ChromeExtensionService) {
 
-    }    
 
-    public consoleEvent(){
-        console.log("고정링크"+this.listLinkFixed[0].fixed[1]+this.listLinkFixed[0].url+"/"+this.listLinkFixed[1].fixed[1]+this.listLinkFixed[1].url);
-        console.log("//////////////");
-        console.log("비고정링크"+this.listLinkUnfixed[0].fixed[1]+this.listLinkUnfixed[0].url+"/"+this.listLinkFixed[1].fixed[1]+this.listLinkFixed[1].url);
     }
 
-    getTitle(url:string){
-        
+    ngAfterViewInit() {
+        // 목객체의 정보를 받음.
+        this.listLinks = this.linkService.getLink();
+        this.chromeService.getBookMarkList().then(bmArr => {
+            this.listLinkUnfixed = bmArr;
+        });
+        this.listLinkFixed = this.listLinks[0].links;
+        // this.listLinkUnfixed = this.listLinks[1].links;
+    }
+
+    public consoleEvent() {
+        // console.log("고정링크" + this.listLinkFixed[0].fixed[1] + this.listLinkFixed[0].url + "/" + this.listLinkFixed[1].fixed[1] + this.listLinkFixed[1].url);
+        // console.log("//////////////");
+        // console.log("비고정링크" + this.listLinkUnfixed[0].fixed[1] + this.listLinkUnfixed[0].url + "/" + this.listLinkFixed[1].fixed[1] + this.listLinkFixed[1].url);
+    }
+
+    bookMarkMapper(bmArr: Object[]) {
+        bmArr.forEach(bookMark => {
+
+        })
+    }
+
+    getTitle(url: string) {
+
     }
 
     // openURL(url:string){
@@ -55,7 +70,7 @@ export class LinkComponent {
     // }
 
     // url을 LinkSenderService를 통해 iframe으로 전달함.
-    sendURL(url:string){
+    sendURL(url: string) {
         this.linkSendService.sendAction(url);
     }
 }

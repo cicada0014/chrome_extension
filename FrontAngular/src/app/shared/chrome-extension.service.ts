@@ -6,9 +6,9 @@ declare var chrome: any;
 @Injectable()
 export class ChromeExtensionService {
     private currentFileId: string;
-    private currentFileName: string = "연결되지 않은 문서";
+    private currentFileName: string = "이름없는 문서";
     public fileAthor: string;
-    public savedState: string = "저장 불가";
+    public savedState: string = "저장이 필요해요";
     public writeTime: string; // 시간 객체로 확인해봐야겠어. 
 
     public isDriveWindowOpen: boolean = false;
@@ -18,12 +18,29 @@ export class ChromeExtensionService {
     }
 
 
-    public getBookMarkList(){
-        console.log(chrome.bookmarks);
+    public getBookMarkList() {
+        //https://developer.chrome.com/extensions/bookmarks#method-getTree
+        // 관련 api 주소
+        // 북마크는 트리구조로 되어있다. 
+        // 전체 북마크의 아이디는 0 이다. 이것이 최상위 루트노드이다.
+        // 생긴 순서대로 인덱스를 갖게된다. 아이디와 인덱스는 별개이다. 
+        // 인덱스는 통상 쓰이는 것처럼 0부터 시작. 아이디는 생성된 순서대로 부여되는듯 하다. 
+        // 북마크바의 첫번재 디렉토리에 있는 북마크들을 대상으로 한다. 아이디는 1번
+        // 폴더화가 안되어있으므로 일단 다 가져와서 넣어본다. 
+        return new Promise<any>(function (resolve, result) {
+            chrome.bookmarks.getSubTree("0",(bmArr) => {
+                //bookmark array 의 0 번째 객체는 최상단 노드, 
+                // 그 자식객체들은 기존북마크와 기타북마크
+                // 기존북마크가 0 번 인덱스. 그 자식객체들이 각 북마크 
+                resolve(bmArr[0].children[0].children);
+            })
+        });
     }
 
 
-    // 크롬 익스텐션에서만 CORS 정책에서 자유로울 수 있기때문이다. 이는 연구해야할 필요성이 있다. 왜 익스텐션에서는 
+
+    // 일반 호스트로 페이지를 열면 다른 곳의 내용을 불러올수가 없다. 자바스크립트로 요청하는 것이기때문...
+    // 크롬 익스텐션에서만 CORS 정책에서 자유로울 수 있다.. 이는 연구해야할 필요성이 있다. 왜 익스텐션에서는 
     // 일반적인요청이 잘 들어오는 것일가. 크롬브라우저가 감싸고 있기때문이 아닐까 싶다.
     public pageGet(linkUrl: string) {
 
@@ -97,7 +114,6 @@ export class ChromeExtensionService {
         let access_token;
         let retry = true;
         let that = this;
-        console.log("xhr 을 시작합니다");
         noInteractivegetToken();
 
 
@@ -169,19 +185,7 @@ export class ChromeExtensionService {
 
             }
         }
-        // function requestComplete(xhr) {
-        //     if (this.status == 401 && retry) {
-        //         retry = false;
-        //         chrome.identity.removeCachedAuthToken({ token: access_token },
-        //             getToken);
-        //     } else {
-        //         console.log(this);
-        //         console.log(this.response)
-        //         callback(null, this.status, this.response);
-        //     }
-        // }
     }
-
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -209,14 +213,14 @@ export class ChromeExtensionService {
 
         let state = STATE_START;
 
-        let signin_button = document.querySelector('#signin');
+        // let signin_button = document.querySelector('#signin');
         let signout_button = document.querySelector('#signOut');
         let user_info_div = document.querySelector('#user_info');
 
 
 
         return new Promise<any>(function (resolve, reject) {
-            signin_button.addEventListener('click', interactiveSignIn);
+            // signin_button.addEventListener('click', interactiveSignIn);
             signout_button.addEventListener('click', revokeToken);
 
             // 실질적으로 리퀘스트를 보내는 시점이다. 
@@ -234,7 +238,7 @@ export class ChromeExtensionService {
                 } else {
                     reject(false);
                     that.router.navigate(['welcome']);
-                    user_info_div.innerHTML = "사용권한을 허락해주세요";
+                    user_info_div.innerHTML = "시작하기 버튼을 눌러주세요.";
                     changeState(STATE_START);
                 }
             }
@@ -254,17 +258,17 @@ export class ChromeExtensionService {
                 // console.log(signin_button + "///"+signout_button)
                 switch (state) {
                     case STATE_START:
-                        enableButton(signin_button);
+                        // enableButton(signin_button);
                         disableButton(signout_button);
                         // disableButton(revoke_button);
                         break;
                     case STATE_ACQUIRING_AUTHTOKEN:
-                        disableButton(signin_button);
+                        // disableButton(signin_button);
                         disableButton(signout_button);
                         // disableButton(revoke_button);
                         break;
                     case STATE_AUTHTOKEN_ACQUIRED:
-                        disableButton(signin_button);
+                        // disableButton(signin_button);
                         enableButton(signout_button);
                         // enableButton(revoke_button);
                         break;
@@ -433,7 +437,7 @@ export class ChromeExtensionService {
         let requestHeader = {
             "Content-Type": "application/json ; charset=UTF-8"
         }
-        return new Promise<Object>(function (resolve, reject) {
+        return new Promise<any>(function (resolve, reject) {
 
             // 실질적인 요청보내기 작업
             // 메타데이터는 스트링 화 시켜서 보내야함.
@@ -442,13 +446,13 @@ export class ChromeExtensionService {
             // 성공했을때 하는 작업. 실해하게되면 
             function onsuccess(error, status, response) {
                 if (!error && status == 200) {
-                    let createdFile = JSON.parse(response);
-                    console.log(createdFile);
-                    that.currentFileId = createdFile.id;
-                    that.currentFileName = createdFile.name;
-                    resolve(createdFile);
+                    let createdFileMetaData = JSON.parse(response);
+                    that.currentFileId = createdFileMetaData.id;
+                    that.currentFileName = createdFileMetaData.name;
+                    resolve(createdFileMetaData);
                 } else {
                     console.log("Get FileList fail!!!" + error);
+                    reject(error);
                 }
             }
 
@@ -482,6 +486,7 @@ export class ChromeExtensionService {
                     resolve();
                 } else {
                     console.log("Get FileContent fail!!!" + error);
+                    reject(error)
                 }
             }
 
@@ -489,10 +494,5 @@ export class ChromeExtensionService {
         })
 
     }
-
-
-
-
-
 
 }

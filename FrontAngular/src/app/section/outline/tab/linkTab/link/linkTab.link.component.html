@@ -1,36 +1,37 @@
 <div>
-    <img src="assets/image/arrowUpIcon.png" width="30px" height="30px"/>
-</div>    
+    <i class="fa fa-angle-up fa-6" aria-hidden="true"></i>
+</div>
 <div class="view">
-    <div class="scrollBlind" >
-        <div [dragula]='"fixed-link"' [dragulaModel]='listLinkFixed' >
+    <div class="scrollBlind">
+        <!--<div [dragula]='"fixed-link"' [dragulaModel]='listLinkFixed'>
             <div class="z-depth-2 FixedLink" *ngFor="let linkA of listLinkFixed">
-                <div class="linkbox waves-effect tooltipped" data-position="right" data-delay="300" data-tooltip="Title"
-                    (click)="sendURL(linkA.url)">
+                <div class="row linkbox waves-effect tooltipped" data-position="right" data-delay="100" data-tooltip="Title" (click)="sendURL(linkA.url)">
                     <div>
                         <img class="left" src="assets/image/fixedBar.png" width="4" height="30"/>
-                        <img src="https://www.google.com/s2/favicons?domain={{linkA.url}}" alt="favicon" width="30"  height="30">
+                        <div class="col s2">
+                            <img  src="https://www.google.com/s2/favicons?domain={{linkA.url}}" alt="favicon" width="30" height="30">
+                        </div>
+                        <span class="col s10">titdjtlsjtltjsl</span>
                     </div>
                 </div>
             </div>
-       </div>
-       <div [dragula]='"unfixed-link"' [dragulaModel]='listLinkUnfixed'>
-          <div class="z-depth-2 UnfixedLink" *ngFor="let linkB of listLinkUnfixed; let i = index">
-               <div class="linkbox waves-effect tooltipped" data-position="right" data-delay="300" data-tooltip="Title"
-                    (click)="sendURL(linkB.url)">
-                   <!-- url로 타이틀 받아오기  http://textance.herokuapp.com/title/{{linkA.url}}-->
-                   <div>
-                       <img class="left" src="assets/image/unfixedBar.png" width="4" height="30"/>
-                        <img src="https://www.google.com/s2/favicons?domain={{linkB.url}}" alt="favicon" width="30"  height="30">
+        </div>-->
+        <div [dragula]='"unfixed-link"' [dragulaModel]='listLinkUnfixed'>
+            <div class="z-depth-2 UnfixedLink" *ngFor="let linkB of listLinkUnfixed; let i = index">
+                <div class="row linkbox waves-effect tooltipped" data-position="right" data-delay="100" data-tooltip="linkB.title" (click)="sendURL(linkB.url)">
+                    <!-- url로 타이틀 받아오기  http://textance.herokuapp.com/title/{{linkA.url}}-->
+                    <div class="col s2">
+                        <img src="https://www.google.com/s2/favicons?domain={{linkB.url}}" alt="favicon" width="30" height="30">
                     </div>
+                    <span class="col s10">{{linkB.title}}</span>
                 </div>
             </div>
         </div>
         <button (click)="consoleEvent()">콘솔</button><br>
-    
+
         <!--<input [(ngModel)]="value"> <br><p>{{value}}</p>-->
     </div>
 </div>
 <div>
-    <img src="assets/image/arrowDownIcon.png" width="30px" height="30px"/>
+    <i class="fa fa-angle-down fa-6" aria-hidden="true"></i>
 </div>

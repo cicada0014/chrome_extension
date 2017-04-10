@@ -1,11 +1,11 @@
 <!--아웃라인 컴포넌트의 전반적인 컨테이너를 담당한다.-->
 <div class="outline row" [@navbarAction]="navbarAction">
 
-    <linkFrame   (urlInfomation)="pageGet($event)" [@navbarAction]="navbarAction" class="z-depth-3" [ngStyle]="{'width': linkFrameWidth, 'transform': linkFrameTransform,'z-index': linkFrameZIndex }"
+    <linkFrame (dragStartEmit)="screenResizeStart($event)"  (urlInfomation)="pageGet($event)" [@navbarAction]="navbarAction" class="z-depth-3" [ngStyle]="{'width': linkFrameWidth, 'transform': linkFrameTransform,'z-index': linkFrameZIndex }"
         [iframeOpacity]="iframeOpacity" [iframeHeight]="applyFrameHeight()" [iframeWidth]="applyFrameWidth()" [iframeScale]="applyFrameScale()"></linkFrame>
 
-    <devider id="devider" [@navbarAction]="navbarAction" draggable="true"  [ngStyle]="{ 'z-index': dividerZIndex ,'width': dividerWidth, 'transform': dividerTransform}"
-        (drag)="screenResizeStart($event)" (dragend)="screenResizeEnd($event)" (mousedown)="dividerClick()" (mouseup)="dividerDeActive()"></devider>
+    <!--<devider class="tooltipped" id="devider" data-position="right" data-delay="100" data-tooltip="drag" [@navbarAction]="navbarAction"   [ngStyle]="{ 'z-index': dividerZIndex ,'width': dividerWidth, 'transform': dividerTransform}"
+        (drag)="screenResizeStart($event)" (dragend)="screenResizeEnd($event)" (mousedown)="dividerClick()" (mouseup)="dividerDeActive()"></devider>-->
 
     <editor [pageContent]="pageContent" #firstEditor (keyup)="saveOperator()"  class="" [@navbarAction]="navbarAction" [dragula]='"first-bag"' [routeData]="inputParam" [ngStyle]="{'width': editorWidth,'transform': editorTransform,'outline':editorFocusOutline }">
     </editor>
@@ -13,7 +13,7 @@
 
 
     <!--탭의 usage에 따라 tab의 종류를 다르게 불러옴-->
-    <tab id="linkTab" [@navbarAction]="navbarAction" [@openLinkTab]="linkTabState" [usage]="tabUsage_link"></tab>
+    <tab id="linkTab" [@navbarAction]="navbarAction" [@openLinkTab]="linkTabState" [usage]="tabUsage_link" ></tab>
     <tab id="editorTab" [@navbarAction]="navbarAction" [@openEditorTab]="editorTabState" [usage]="tabUsage_editor" (mouseleave)="leaveEditorTab()"
         ></tab>
     <!--화면의 양극쪽에 마우스가 올려질 때 탭을 나타냄. linkTab은 링크프레임이 true일 때만 활성화-->

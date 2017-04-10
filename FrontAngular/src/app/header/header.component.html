@@ -66,24 +66,24 @@
                 </li>
                 <!---->
                 <li><a [ngClass]="fontColor" data-activates='linkFrameRatio' data-position="bottom" data-delay="50" data-tooltip="File Name"
-                        class="waves-effect  tooltipped">{{chromeService.getCurrentFileName()}}</a></li>
+                        class="waves-effect  ">{{chromeService.getCurrentFileName()}}</a></li>
                 <li><a [ngClass]="fontColor" data-activates='linkFrameRatio' data-position="bottom" data-delay="50" data-tooltip="Save State"
-                        class="waves-effect  tooltipped">{{saveState}}</a></li>
+                        class="waves-effect  ">{{saveState}}</a></li>
 
 
 
 
             </ul>
             <loginboard [@showLoginModal]="isShowLoginModal" (click)="showLoginModal($event)"></loginboard>
-            <a (click)="goEditor()" class="brand-logo center grey-text"><i><h4><b>BasilPaper</b></h4></i></a>
+            <a (click)="goEditor()" class="brand-logo center grey-text"><i><h4><b>BookMarkPaper</b></h4></i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
 
                 <li>
                     <a [ngClass]="fontColor" data-position="bottom" data-delay="50" data-tooltip="browser" class="waves-effect  tooltipped" keyMap
                         [keyCode]="findShortKeyCode('create_frame_key')" [isCtrKey]="'false'" [isAltKey]="'true'" (keyAction)="createLinkFrame()"
                         (click)="createLinkFrame()">
-                        <i *ngIf="!isLinkFrameActivated" class="fa fa-caret-square-o-right fa-2x" aria-hidden="true"></i>
-                        <i *ngIf="isLinkFrameActivated" class="fa fa-caret-square-o-left fa-2x" aria-hidden="true"></i>
+                        <i *ngIf="!isLinkFrameActivated" class="fa fa-caret-square-o-right fa-4" aria-hidden="true"></i>
+                        <i *ngIf="isLinkFrameActivated" class="fa fa-caret-square-o-left fa-4" aria-hidden="true"></i>
                     </a>
                 </li>
                 <li>
@@ -94,13 +94,13 @@
                 <li>
                     <a [ngClass]="fontColor" data-position="bottom" data-delay="50" data-tooltip="Full Screen" class="waves-effect  tooltipped"
                         keyMap [keyCode]="findShortKeyCode('wide_key')" [isAltKey]="'true'" (keyAction)="openWith()" (click)="openWith()">
-                        <i class="material-icons ">open_with</i></a>
+                        <i class="fa fa-arrows-alt fa-4" aria-hidden="true"></i></a>
                 </li>
                 <li>
-                    <a [ngClass]="fontColor" data-position="bottom" data-delay="50" data-tooltip="Bar Fixed" class="waves-effect  tooltipped"
+                    <a [ngClass]="fontColor" data-position="bottom" data-delay="50" data-tooltip="" class="waves-effect  "
                         keyMap [keyCode]="findShortKeyCode('header_fixed_key')" [isAltKey]="'true'" (keyAction)="headerFix()"
                         (click)="headerFix()">
-                        <i class="material-icons">import_export</i>
+                        <i class="fa fa-thumb-tack fa-4" aria-hidden="true"></i>
                     </a>
                 </li>
                 <!--키 세팅은 다음 버전에 구현하기-->

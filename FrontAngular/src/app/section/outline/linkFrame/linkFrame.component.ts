@@ -56,7 +56,7 @@ export class linkFrameComponent implements OnInit {
   private state: string = 'close';
 
   @Output() urlInfomation = new EventEmitter<string>();
-
+  @Output() dragStartEmit = new EventEmitter();
   //  sanitization 을 통과한 url을 만들기 위한 변수
   trustResourceURL: SafeResourceUrl;
   private linkUrl: string = '';
@@ -69,7 +69,7 @@ export class linkFrameComponent implements OnInit {
     private dragulaService: DragulaService, private linkSendService: LinkSenderService, public navService: NavBarService) {
 
     // 맨 처음 띄워줄 화면
-    this.linkUrl = "http://www.tistory.com/";
+    this.linkUrl = "http://www.google.com/";
     this.urlChecker = this.linkUrl;
 
     // sanitization 을 통과해야 angular app 에서 쓸 수 있다.
@@ -77,6 +77,10 @@ export class linkFrameComponent implements OnInit {
 
 
 
+  }
+
+  dragStart($event){
+    this.dragStartEmit.emit($event);
   }
 
   pageGet() {
