@@ -1,3 +1,4 @@
+import { NavBarService } from './nav-bar.service';
 import { OwnServerService } from './own-server.service';
 import { ChromeExtensionService } from './chrome-extension.service';
 import { KeymapService } from './keymap/keymap.service';
@@ -13,7 +14,8 @@ import { NgModule } from '@angular/core';
     declarations: [KeymapDirective],
     providers: [KeymapService,
     ChromeExtensionService,
-    OwnServerService
+    OwnServerService,
+    NavBarService
     ],
 })
 export class SharedModule { }

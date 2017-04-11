@@ -1,9 +1,11 @@
+import { NavBarService } from '../shared/nav-bar.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'section',
     template: `
     <setting *ngIf=""></setting>
+    <tutorial *ngIf="navService.isTutorial"></tutorial>
     <router-outlet></router-outlet>
     `
 })
@@ -17,7 +19,7 @@ export class SectionComponent implements OnInit {
      * @todo 추가적으로 해야할 사항
      */
 
-    constructor() { }
+    constructor(public navService : NavBarService) { }
 
     ngOnInit() {
 

@@ -1,3 +1,4 @@
+import { TutorialComponent } from './tutorial.component';
 import { SharedModule } from '../shared/shared.module';
 import { NoTokenPageComponent } from './error-page/no-token-page.component';
 import { SettingModule } from './setting/setting.module';
@@ -10,7 +11,7 @@ import { NgModule } from '@angular/core';
 @NgModule({
     imports: [SectionRoutingModule,OutlineModule,SettingModule,SharedModule],
     exports: [SectionComponent,InvalidUrlPageComponent,NoTokenPageComponent],
-    declarations: [SectionComponent,InvalidUrlPageComponent,NoTokenPageComponent],
+    declarations: [SectionComponent,InvalidUrlPageComponent,NoTokenPageComponent,TutorialComponent],
     providers: [],
 })
 export class SectionModule { }

@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class OwnServerService {
 
-    // private SERVER_URL: string = 'https://threendeditor-own.herokuapp.com/userInfo/'
-    private SERVER_URL = "http://localhost:3000/userInfo/"
+    private SERVER_URL: string = 'https://threendeditor-own.herokuapp.com/userInfo/'
+    // private SERVER_URL = "http://localhost:3000/userInfo/"
     constructor() {
         // this.URLSELECT(1);
     }
@@ -25,6 +25,7 @@ export class OwnServerService {
                 // console.log(result.currentTarget.response);
 
                 if (result.currentTarget.response.nothing) {
+                    // 유저 데이터가 존재하지않으면 프로미스를 거절한다. 
                     console.log(result.currentTarget.response.nothing);
                     reject();
                 } else {
@@ -43,7 +44,6 @@ export class OwnServerService {
             // xhr.setRequestHeader("Access-Control-Allow-Origin","http://localhost:4200")
             xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             // xhr.setRequestHeader("Content-type", "application/json");
-            console.log(userInfo)
             xhr.onload = (result) => {
                 console.log(result);
             };

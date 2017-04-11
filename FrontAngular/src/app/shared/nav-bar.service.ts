@@ -35,16 +35,37 @@ export class NavBarService {
 
     public action: boolean = false;
     public isInput: boolean = false;
-
+    public isTutorial: boolean = false;
     public frameConfig: FrameConfig;
     private ratioValue: number = 125;
     private scaleValue: number = 0.8;
     private TOTALVALUE: number = 100;
 
+    public linkTabState: string;
+    public editorTabState: string;
+
     constructor() {
+        this.linkTabState = "deActive";
+        this.editorTabState = "deActive";
         this.frameConfig = new FrameConfig(this.ratioValue + "%",
             "scale(" + this.scaleValue + ")",
             this.ratioValue + "vh");
+    }
+
+    public enterLinkTab(): void {
+        this.linkTabState = "active";
+    }
+
+    public leaveLinkTab(): void {
+        this.linkTabState = "deActive";
+    }
+
+    public enterEditorTab(): void {
+        this.editorTabState = "active";
+    }
+
+    public leaveEditorTab(): void {
+        this.editorTabState = "deActive";
     }
     public navAction() {
         this.action = this.action === false ? true : false;
@@ -62,7 +83,9 @@ export class NavBarService {
         this.frameConfigAct();
     }
 
-    frameConfigAct() {
+
+
+    private frameConfigAct() {
         this.ratioValue = (this.TOTALVALUE / this.scaleValue)
         this.frameConfig.setScale("scale(" + this.scaleValue + ")");
         this.frameConfig.setWidth(this.ratioValue + "%");

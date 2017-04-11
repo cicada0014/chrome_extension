@@ -115,8 +115,7 @@ export class OutlineComponent implements OnInit {
     // tab 사용 변수
     tabUsage_link: string = "linkTab";
     tabUsage_editor: string = "editorTab";
-    linkTabState: string;
-    editorTabState: string;
+    
     // drive 사용변수
     private driveData: JSON;
 
@@ -130,7 +129,7 @@ export class OutlineComponent implements OnInit {
         private route: ActivatedRoute,
         private dragulaService: DragulaService,
         private routeParam: ActivatedRoute,
-        private navService: NavBarService,
+        public navService: NavBarService,
         private renderer: Renderer,
         private el: ElementRef,
         private _sanitizer: DomSanitizer,
@@ -146,8 +145,7 @@ export class OutlineComponent implements OnInit {
         this.linkFrameWidth = '0px';
         this.dividerWidth = (savedDividerWidth * 100) + 'px';
         this.navbarAction = this.navService.action + "";
-        this.linkTabState = "deActive";
-        this.editorTabState = "deActive";
+        
 
         ///////
         let that = this;
@@ -337,21 +335,7 @@ export class OutlineComponent implements OnInit {
     * @param void
     * @returns void
     */
-    public enterLinkTab(): void {
-        this.linkTabState = "active";
-    }
-
-    public leaveLinkTab(): void {
-        this.linkTabState = "deActive";
-    }
-
-    public enterEditorTab(): void {
-        this.editorTabState = "active";
-    }
-
-    public leaveEditorTab(): void {
-        this.editorTabState = "deActive";
-    }
+    
 
 
     // drop(e:DragEvent){

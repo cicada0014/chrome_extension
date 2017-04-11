@@ -122,7 +122,8 @@ export class HeaderComponent implements OnInit {
         }
     }
     openHelp() {
-        this.isHelpActive = this.isHelpActive ? false : true;
+        // this.isHelpActive = this.isHelpActive ? false : true;
+        this.navService.isTutorial = this.navService.isTutorial ? false: true;
     }
     headerFix() {
         this.navService.navAction();

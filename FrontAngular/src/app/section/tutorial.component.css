@@ -1,0 +1,34 @@
+div{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    z-index: 9998;
+    background: black;
+    opacity: 0.5;
+}
+
+#guide{
+    position: fixed;
+    top:auto;
+    left: 40%;
+    background: transparent;
+    
+}
+
+#closeBtn{
+    position: absolute;
+    left: 96%;
+    top:90%;
+    z-index: 9999;
+}
+#description{
+    position: absolute;
+    width: 25%;
+    height: 25vh;
+    top:  55%;
+    left: 37.5%;
+    
+
+    z-index: 9999;
+
+}
