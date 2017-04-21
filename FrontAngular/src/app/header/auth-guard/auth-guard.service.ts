@@ -33,7 +33,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
         return this.chromeService.checkGetToken()
             .then(user_info => {
-
+                this.navService.isLogin = true;
                 console.log(user_info);
                 this.ownServerService.getUserData(user_info.id)
                     .then()

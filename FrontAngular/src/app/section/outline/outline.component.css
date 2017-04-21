@@ -64,7 +64,7 @@ editor {
   width: 5%;
   height: 91%;
   min-width: 12%;
-  z-index: 9990;
+  z-index: 9997;
   opacity: 0.8;
 }
 
@@ -77,7 +77,7 @@ editor {
   width: 5%;
   height: 91%;
   min-width: 50px;
-  z-index: 9990;
+  z-index: 9997;
   opacity: 0.5;
 }
 
@@ -111,9 +111,9 @@ editor {
   top: 0;
   right: auto;
   bottom: 0;
-  width: 14%;
+  width: 16%;
   min-width: 3px;
-  z-index: 9997;
+  z-index: 9994;
   height: 91%
 }
 

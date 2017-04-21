@@ -1,5 +1,4 @@
 import { OwnServerService } from '../../shared/own-server.service';
-import { KeyboardEvent } from '@angular/platform-browser/src/facade/browser';
 import { Observable, Subject } from 'rxjs/Rx';
 import { EditorComponent } from './editor/editor.component';
 import { ChromeExtensionService } from '../../shared/chrome-extension.service';
@@ -55,7 +54,7 @@ var savedDiveiderTransX: number = 0;
         trigger(
             'openLinkTab',
             [
-                state('deActive', style({ transform: 'translate3d(-100%,9%,0)', opacity: 0 })),
+                state('deActive', style({ transform: 'translate3d(-110%,9%,0)', opacity: 0 })),
                 state('active', style({ transform: 'translate3d(0,9%,0)', opacity: 0.8 })),
                 transition('deActive <=> active', animate(200)),
 

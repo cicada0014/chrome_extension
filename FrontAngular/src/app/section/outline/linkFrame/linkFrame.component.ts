@@ -116,8 +116,10 @@ export class linkFrameComponent implements OnInit {
     var urlPattern = new RegExp('^(?:https?):\/\/');
     if (urlPattern.test(inputUrl)) {
       this.trustResourceURL = this._sanitizer.bypassSecurityTrustResourceUrl(this.linkUrl);
+      
     } else {
       this.trustResourceURL = this._sanitizer.bypassSecurityTrustResourceUrl("http://" + this.linkUrl);
+      this.linkUrl = "http://" + this.linkUrl;
     }
   }
 

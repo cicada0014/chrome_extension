@@ -115,15 +115,18 @@ export class HeaderComponent implements OnInit {
         if (!this.isFullScreen) {
             this.isFullScreen = true;
             document.body.webkitRequestFullScreen();
-             
-        }else{
+
+        } else {
             this.isFullScreen = false;
             document.webkitCancelFullScreen();
         }
     }
     openHelp() {
         // this.isHelpActive = this.isHelpActive ? false : true;
-        this.navService.isTutorial = this.navService.isTutorial ? false: true;
+        if (this.navService.isLogin) {
+            this.navService.isTutorial = this.navService.isTutorial ? false : true;
+        }
+
     }
     headerFix() {
         this.navService.navAction();
@@ -134,7 +137,7 @@ export class HeaderComponent implements OnInit {
         this.isLinkFrameActivated = this.isLinkFrameActivated ? false : true;
     }
     goSetting() {
-        
+
     }
     enlargeFrame() {
         this.navService.enlargeFrame();

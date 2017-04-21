@@ -33,6 +33,8 @@ export class FrameConfig {
 @Injectable()
 export class NavBarService {
 
+    public isLogin :boolean = false;
+
     public action: boolean = false;
     public isInput: boolean = false;
     public isTutorial: boolean = false;

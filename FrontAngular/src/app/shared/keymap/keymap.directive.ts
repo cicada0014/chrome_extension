@@ -1,7 +1,6 @@
 
 
 
-import { KeyboardEvent } from '@angular/platform-browser/src/facade/browser';
 import { Component, Directive, EventEmitter, HostListener, Input, Output } from '@angular/core';
 
 @Directive({ selector: '[keyMap]' })
@@ -28,7 +27,7 @@ export class KeymapDirective {
 
     // window 전역에서 눌린 키에 대해서 움직이도록 한다. 일반 키
 
-    @HostListener('window:keydown', ['$event']) onkeydown($event: KeyboardEvent) {
+    @HostListener('window:keydown', ['$event']) onkeydown($event : KeyboardEvent) {
         // 에디터의 키맵과 충돌방지를 위해 펑션키를 제외하고는 전부 다른 동작키가 있도록 함.
         if ($event.altKey && this.isAltKey === "true") {
             if ($event.keyCode+"" === this.keyCode) {

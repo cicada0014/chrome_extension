@@ -122,11 +122,11 @@ export class EditorComponent implements OnInit {
         paste: {
             /* This example includes the default options for paste,
                if nothing is passed this is what it used */
-            forcePlainText: false,
+            forcePlainText: true,
             cleanPastedHTML: true,
             cleanReplacements: [],
             cleanAttrs: ['class', 'style','href', 'dir'],
-            cleanTags: ['meta'],
+            cleanTags: ['meta','a'],
             unwrapTags: []
         },
         keyboardCommands: {
