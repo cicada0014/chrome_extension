@@ -1,3 +1,1 @@
-<h1>this is amazing web editor!
-
-developed by Seontaek , Youngtae, Taemin.
+<h1>This is Web Editor for Chrome Users.
